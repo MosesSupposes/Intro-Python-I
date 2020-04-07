@@ -27,6 +27,26 @@ print out a calendar for April in 2015, but if you omit either the year or both 
 it should use today’s date to get the month and year.
 """
 
+
 import sys
 import calendar
 from datetime import datetime
+
+_calendar = calendar.Calendar()
+this_year = datetime.today().year
+
+if len(sys.argv) == 1:
+	this_month = datetime.today().month
+	print(_calendar.monthdayscalendar(this_year, this_month))
+
+elif len(sys.argv) == 2:
+	inputted_month = sys.argv[1]	
+	print(_calendar.monthdayscalendar(this_year, int(inputted_month)))
+
+elif len(sys.argv) == 3:
+	_, inputted_month, inputted_year = sys.argv
+	print(_calendar.monthdayscalendar(int(inputted_year), int(inputted_month)))
+
+else:
+	print("Usage: [Month] [Year]")
+	sys.exit()
