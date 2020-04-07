@@ -32,6 +32,12 @@ import sys
 import calendar
 from datetime import datetime
 
+def validate_month(m):
+	m = int(m)
+	if m < 1 or m > 12:
+		print ("Invalid month. Please enter a month between range 1-12")
+		sys.exit()
+
 _calendar = calendar.Calendar()
 this_year = datetime.today().year
 
@@ -41,10 +47,12 @@ if len(sys.argv) == 1:
 
 elif len(sys.argv) == 2:
 	inputted_month = sys.argv[1]	
+	validate_month(inputted_month)
 	print(_calendar.monthdayscalendar(this_year, int(inputted_month)))
 
 elif len(sys.argv) == 3:
 	_, inputted_month, inputted_year = sys.argv
+	validate_month(inputted_month)
 	print(_calendar.monthdayscalendar(int(inputted_year), int(inputted_month)))
 
 else:
